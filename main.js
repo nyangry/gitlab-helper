@@ -1,0 +1,1 @@
+(function(){key.filter=function(e){var t;return t=(e.target||e.srcElement).tagName,!("INPUT"===t||"SELECT"===t)},key("⌘+enter",function(){var e,t,n,r;return n=$(event.target||event.srcElement),r=n[0].tagName,"TEXTAREA"===r&&n.is(":focus")&&(t=n.parents(".common-note-form"),e=t.find(".js-comment-button"),!e.hasClass("disabled"))?e.click():void 0})}).call(this);

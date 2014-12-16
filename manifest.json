@@ -1,0 +1,22 @@
+{
+    "version": "0.0.0",
+    "manifest_version": 2,
+ 
+    "name": "GitLab Helper",
+    "description": "Improve keyboard action",
+ 
+    "content_scripts": [
+        {
+            "matches": ["http://office-gitlab01.ebisubook.com/*"],
+            "js": [
+                "bower_components/jquery/dist/jquery.min.js",
+                "bower_components/keymaster/keymaster.js",
+                "main.js"
+            ]
+        }
+      ], 
+
+    "web_accessible_resources": [
+      "bower_components/jquery/dist/jquery.min.map"
+    ]
+}
