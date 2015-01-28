@@ -1,5 +1,5 @@
 {
-    "version": "0.0.0",
+    "version": "0.2.2",
     "manifest_version": 2,
  
     "name": "GitLab Helper",
@@ -7,7 +7,7 @@
  
     "content_scripts": [
         {
-            "matches": ["http://office-gitlab01.ebisubook.com/*"],
+            "matches": [ "http://*/*", "https://*/*" ],
             "js": [
                 "bower_components/jquery/dist/jquery.min.js",
                 "bower_components/keymaster/keymaster.js",

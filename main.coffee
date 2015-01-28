@@ -1,3 +1,5 @@
+return if $('meta[name="description"]').attr('content') isnt 'GitLab Community Edition'
+
 # cmd + Enter to Post
 key.filter = (event) ->
   tagName = (event.target || event.srcElement).tagName
@@ -91,6 +93,9 @@ bindEvents = ->
 
     # 絵文字タグを挿入する
     $text_area.val $text_area.val() + $(@).data 'emoji'
+
+    # コメント追加ボタンのdisabledを解除する
+    $current_form.find('.js-comment-button').removeClass('disabled').removeAttr('disabled')
 
     # パレットを閉じる
     $pallet_node = $('.js-pallet')
