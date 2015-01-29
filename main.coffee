@@ -34,9 +34,13 @@ loadEmojiSource = ->
   emojis = []
 
   buildAndInsertPallet = (emojis) ->
+    $pallet_backdrop_node = $('<div/>').attr
+      class: 'js-pallet-backdrop'
+      style: 'z-index: 100; display:none; position:fixed; top:0; left:0; width:100%; height:120%;'
+
     $pallet_node = $('<div/>').attr
       class: 'js-pallet'
-      style: 'display: none; position: absolute; width: 552px; background: #efefef; padding: 5px; border: 1px solid #ddd;'
+      style: 'z-index: 200; display: none; position: absolute; width: 552px; background: #efefef; padding: 5px; border: 1px solid #ddd;'
 
     $.each emojis, ->
       $icon_node = $('<span/>').attr
@@ -51,6 +55,7 @@ loadEmojiSource = ->
 
       $pallet_node.append $icon_node
 
+    $pallet_backdrop_node.appendTo 'body'
     $pallet_node.appendTo 'body'
 
   successLoadEmojis = (data, status, xhr) ->
@@ -79,6 +84,9 @@ bindEvents = ->
 
   # パレットを開く
   $('body').on 'click', '.js-open-icon-pallet', (e) ->
+    $pallet_backdrop_node = $('.js-pallet-backdrop')
+    $pallet_backdrop_node.show()
+
     $pallet_node = $('.js-pallet')
     $pallet_node.show()
     $pallet_node.css 'top', e.pageY + 30
@@ -86,6 +94,12 @@ bindEvents = ->
 
     # 現在開いているコメント欄を保存しておく
     $current_form = $(@).parents('form')
+
+  # 絵文字パレット以外の領域クリックでパレットを閉じる
+  $('body').on 'click', '.js-pallet-backdrop', (e) ->
+    $(@).hide()
+    $pallet_node = $('.js-pallet')
+    $pallet_node.hide()
 
   # 絵文字を選択する
   $('body').on 'click', '.js-pallet-icon', (e) ->
