@@ -112,6 +112,9 @@ bindEvents = ->
     $current_form.find('.js-comment-button').removeClass('disabled').removeAttr('disabled')
 
     # パレットを閉じる
+    $pallet_backdrop_node = $('.js-pallet-backdrop')
+    $pallet_backdrop_node.hide()
+
     $pallet_node = $('.js-pallet')
     $pallet_node.hide()
 
