@@ -118,6 +118,9 @@ bindEvents = ->
     $pallet_node = $('.js-pallet')
     $pallet_node.hide()
 
+    # テキストエリアにフォーカスする
+    $text_area.focus()
+
 
 
 if location.pathname.split('/').length >= 5
