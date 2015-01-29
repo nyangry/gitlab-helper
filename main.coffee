@@ -106,7 +106,7 @@ bindEvents = ->
     $text_area = $current_form.find('.js-note-text')
 
     # 絵文字タグを挿入する
-    $text_area.val $text_area.val() + $(@).data 'emoji'
+    $text_area.val $text_area.val() + ' ' + $(@).data 'emoji'
 
     # コメント追加ボタンのdisabledを解除する
     $current_form.find('.js-comment-button').removeClass('disabled').removeAttr('disabled')
