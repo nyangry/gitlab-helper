@@ -13,7 +13,7 @@ key '⌘+enter', (e) ->
   
   return unless $target.is(':focus')
 
-  $note_form = $target.parents('.common-note-form')
+  $note_form = $target.parents('form')
 
   $add_comment_button = $note_form.find('.js-comment-button')
 
