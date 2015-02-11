@@ -10,7 +10,7 @@ key '⌘+enter', (e) ->
   tagName = $target[0].tagName
 
   return unless tagName == 'TEXTAREA'
-  
+
   return unless $target.is(':focus')
 
   $note_form = $target.parents('form')
@@ -46,7 +46,7 @@ loadEmojiSource = ->
       $icon_node = $('<span/>').attr
         class: 'js-pallet-icon'
         style: 'cursor: pointer;'
-      
+
       $icon_node.data 'emoji', ':' + @.name + ':'
 
       $icon_node.append $('<img/>').attr
@@ -121,7 +121,19 @@ bindEvents = ->
     # テキストエリアにフォーカスする
     $text_area.focus()
 
-
+closeSidebar = ->
+  $('.sidebar-wrapper').css(
+    width: 52,
+    position: 'absolute',
+    overflowX: 'hidden'
+  )
+  $navSidebar = $('.nav-sidebar')
+  $navSidebar.css(
+    width: 52
+    position: 'absolute',
+  )
+  $navSidebar.find('li a>span').hide()
+  $('.page-with-sidebar').css 'padding-left', 52
 
 if location.pathname.split('/').length >= 5
   loadEmojiSource()
@@ -140,3 +152,9 @@ $('#notes-list').find('.note').filter('li').each ->
 
 # prevent discuss-body to hide
 $('.discussion-body').removeClass 'hide'
+
+$ ->
+  closeSidebar()
+
+# bind for TurboLinks
+$(document).on 'page:load', closeSidebar
