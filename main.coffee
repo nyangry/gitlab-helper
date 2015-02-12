@@ -84,13 +84,15 @@ bindEvents = ->
 
   # パレットを開く
   $('body').on 'click', '.js-open-icon-pallet', (e) ->
+    $self = $(@)
+
     $pallet_backdrop_node = $('.js-pallet-backdrop')
     $pallet_backdrop_node.show()
 
     $pallet_node = $('.js-pallet')
     $pallet_node.show()
-    $pallet_node.css 'top', e.pageY + 30
-    $pallet_node.css 'left', e.pageX
+    $pallet_node.css 'top', $self.offset().top + 32
+    $pallet_node.css 'left', $self.offset().left + 18
 
     # 現在開いているコメント欄を保存しておく
     $current_form = $(@).parents('form')
