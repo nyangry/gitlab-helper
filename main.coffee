@@ -28,7 +28,6 @@ class CommandPlusEnterToPost
 
       $add_comment_button.click()
 
-command_enter_to_post = new CommandPlusEnterToPost
 
 
 # add emoji pallet
@@ -139,8 +138,6 @@ class EmojiPallet
     $pallet_backdrop_node.appendTo 'body'
     $pallet_node.appendTo 'body'
 
-emoji_pallet = new EmojiPallet
-
 
 # hide merge note in notes list
 class HideMergeNotes
@@ -155,8 +152,6 @@ class HideMergeNotes
       $(@).css
         display: 'none'
 
-hide_merge_notes = new HideMergeNotes
-
 
 # prevent discuss-body to hide
 class PreventDiscussBodyToHide
@@ -166,4 +161,36 @@ class PreventDiscussBodyToHide
   bindEvents: ->
     $('.discussion-body').removeClass 'hide'
 
-prevent_disucuss_body_to_hide = new PreventDiscussBodyToHide
+
+# close side bar
+class CloseSideBar
+  constructor: ->
+    @bindEvents()
+
+  bindEvents: ->
+    $('.sidebar-wrapper').css(
+      width: 52,
+      position: 'absolute',
+      overflowX: 'hidden'
+    )
+    $navSidebar = $('.nav-sidebar')
+    $navSidebar.css(
+      width: 52
+      position: 'absolute',
+    )
+    $navSidebar.find('li a>span').hide()
+    $('.page-with-sidebar').css 'padding-left', 52
+
+activateExtension = ->
+  command_enter_to_post         = new CommandPlusEnterToPost
+  emoji_pallet                  = new EmojiPallet
+  hide_merge_notes              = new HideMergeNotes
+  prevent_disucuss_body_to_hide = new PreventDiscussBodyToHide
+  close_side_bar                = new CloseSideBar
+
+$ ->
+  activateExtension()
+
+# bind for TurboLinks
+$(document).on 'page:load', ->
+  activateExtension()
