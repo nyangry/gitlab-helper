@@ -35,8 +35,8 @@ command_enter_to_post = new CommandPlusEnterToPost
 class EmojiPallet
   constructor: ->
     return unless location.pathname.split('/').length >= 5
-    @loadEmojiSource()
     @insertSmileIcon()
+    @loadEmojiSource()
     @bindEvents()
 
   bindEvents: ->
@@ -84,7 +84,8 @@ class EmojiPallet
       $text_area.focus()
 
   insertSmileIcon: ->
-    $icon_node = $('<li/>').append $('<i/>').addClass('icon-smile').attr
+    $icon_node = $('<li/>').append $('<i/>').attr
+      class: 'fa fa-smile-o'
       style: 'font-size: 28px; line-height: 28px; padding: 6px; display: block; cursor: pointer;'
     $icon_node.addClass 'js-open-icon-pallet'
 
