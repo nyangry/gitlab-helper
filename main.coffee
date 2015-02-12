@@ -200,14 +200,15 @@ class InsertLGTMImage
       $('.js-lgtm-spinner-image').show()
 
       $current_form = $(@).parents('form')
+      $text_area    = $current_form.find('.js-note-text')
 
       $.getJSON 'http://www.lgtm.in/g', (data) ->
-
-        $text_area = $current_form.find('.js-note-text')
-
         # LGTM画像を挿入する
         lgtm_image = data.markdown.split('\n\n')[0]
         $text_area.val $text_area.val() + ' ' + lgtm_image
+
+        # コメント追加ボタンのdisabledを解除する
+        $current_form.find('.js-comment-button').removeClass('disabled').removeAttr('disabled')
 
         # テキストエリアにフォーカスする
         $text_area.focus()
