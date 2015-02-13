@@ -25,11 +25,43 @@ class CommandPlusEnterToPost
 
       $note_form = $target.parents('form')
 
-      $add_comment_button = $note_form.find('.js-comment-button')
+      $submit_button = $note_form.find('.js-comment-button')
 
-      return if $add_comment_button.hasClass('disabled')
+      return if $submit_button.hasClass('disabled')
 
-      $add_comment_button.click()
+      $submit_button.click()
+
+
+# insert plus one
+class InsertPlusOne
+  constructor: ->
+    @insertButton()
+    @bindEvents()
+
+  bindEvents: ->
+    $('body').on 'click', '.js-insert-plus-one', (e) ->
+      $current_form = $(@).parents('form')
+
+      $current_form.find('.js-note-text').val ' :+1:'
+
+      # コメント追加ボタン
+      $submit_button = $current_form.find('.js-comment-button')
+
+      # コメント追加ボタンのdisabledを解除する
+      $submit_button.removeClass('disabled').removeAttr('disabled')
+
+      # コメント送信
+      $submit_button.click()
+
+  insertButton: ->
+    $icon_node = $('<li/>').append $('<i/>').attr
+      class: 'fa fa-thumbs-o-up'
+      style: 'font-size: 28px; line-height: 28px; padding: 6px; display: block; cursor: pointer;'
+    $icon_node.addClass 'js-insert-plus-one'
+
+    $('.js-main-target-form').find('.nav-tabs').append $icon_node.clone()
+    $('.js-new-note-form').find('.nav-tabs').append $icon_node.clone()
+    $('.edit_note').find('.nav-tabs').append $icon_node.clone()
 
 
 # add emoji pallet
@@ -92,6 +124,7 @@ class EmojiPallet
 
     $('.js-main-target-form').find('.nav-tabs').append $icon_node.clone()
     $('.js-new-note-form').find('.nav-tabs').append $icon_node.clone()
+    $('.edit_note').find('.nav-tabs').append $icon_node.clone()
 
   loadEmojiSource: ->
     emoji_data_source = [
@@ -141,6 +174,61 @@ class EmojiPallet
     $pallet_node.appendTo 'body'
 
 
+# insert lgtm image
+class InsertLGTMImage
+  constructor: ->
+    @insertButton()
+    @insertSpinnerImage()
+    @bindEvents()
+
+  bindEvents: ->
+    loading = false
+    $('body').on 'click', '.js-insert-lgtm-image', (e) ->
+      return if loading
+
+      loading = true
+      $('.js-lgtm-spinner-image').show()
+
+      $current_form = $(@).parents('form')
+      $text_area    = $current_form.find('.js-note-text')
+
+      $.getJSON 'http://www.lgtm.in/g', (data) ->
+        # LGTM画像を挿入する
+        lgtm_image = data.markdown.split('\n\n')[0]
+        $text_area.val $text_area.val() + ' ' + lgtm_image
+
+        # コメント追加ボタンのdisabledを解除する
+        $current_form.find('.js-comment-button').removeClass('disabled').removeAttr('disabled')
+
+        # テキストエリアにフォーカスする
+        $text_area.focus()
+
+        loading = false
+        $('.js-lgtm-spinner-image').hide()
+
+  insertButton: ->
+    $icon_node = $('<li/>').append $('<i/>').attr
+      class: 'fa fa-github-alt'
+      style: 'font-size: 28px; line-height: 28px; padding: 6px; display: block; cursor: pointer;'
+    $icon_node.addClass 'js-insert-lgtm-image'
+
+    $('.js-main-target-form').find('.nav-tabs').append $icon_node.clone()
+    $('.js-new-note-form').find('.nav-tabs').append $icon_node.clone()
+    $('.edit_note').find('.nav-tabs').append $icon_node.clone()
+
+  insertSpinnerImage: ->
+    $icon_node = $('<li/>').css
+      display: 'none'
+    $icon_node.addClass 'js-lgtm-spinner-image'
+
+    $icon_node.append $('<img/>').attr
+      style: 'width: 34px; padding: 6px;'
+      src: spinner_image
+
+    $('.js-main-target-form').find('.nav-tabs').append $icon_node.clone()
+    $('.js-new-note-form').find('.nav-tabs').append $icon_node.clone()
+
+
 # hide merge note in notes list
 class HideMergeNotes
   constructor: ->
@@ -184,67 +272,14 @@ class CloseSideBar
     $('.page-with-sidebar').css 'padding-left', 52
 
 
-# insert lgtm image
-class InsertLGTMImage
-  constructor: ->
-    @insertUpIcon()
-    @insertSpinnerImage()
-    @bindEvents()
-
-  bindEvents: ->
-    loading = false
-    $('body').on 'click', '.js-insert-lgtm-image', (e) ->
-      return if loading
-
-      loading = true
-      $('.js-lgtm-spinner-image').show()
-
-      $current_form = $(@).parents('form')
-      $text_area    = $current_form.find('.js-note-text')
-
-      $.getJSON 'http://www.lgtm.in/g', (data) ->
-        # LGTM画像を挿入する
-        lgtm_image = data.markdown.split('\n\n')[0]
-        $text_area.val $text_area.val() + ' ' + lgtm_image
-
-        # コメント追加ボタンのdisabledを解除する
-        $current_form.find('.js-comment-button').removeClass('disabled').removeAttr('disabled')
-
-        # テキストエリアにフォーカスする
-        $text_area.focus()
-
-        loading = false
-        $('.js-lgtm-spinner-image').hide()
-
-  insertUpIcon: ->
-    $icon_node = $('<li/>').append $('<i/>').attr
-      class: 'fa fa-thumbs-o-up'
-      style: 'font-size: 28px; line-height: 28px; padding: 6px; display: block; cursor: pointer;'
-    $icon_node.addClass 'js-insert-lgtm-image'
-
-    $('.js-main-target-form').find('.nav-tabs').append $icon_node.clone()
-    $('.js-new-note-form').find('.nav-tabs').append $icon_node.clone()
-
-  insertSpinnerImage: ->
-    $icon_node = $('<li/>').css
-      display: 'none'
-    $icon_node.addClass 'js-lgtm-spinner-image'
-
-    $icon_node.append $('<img/>').attr
-      style: 'width: 34px; padding: 6px;'
-      src: spinner_image
-
-    $('.js-main-target-form').find('.nav-tabs').append $icon_node.clone()
-    $('.js-new-note-form').find('.nav-tabs').append $icon_node.clone()
-
-
 activateExtension = ->
   command_enter_to_post         = new CommandPlusEnterToPost
+  insert_plus_one               = new InsertPlusOne
   emoji_pallet                  = new EmojiPallet
+  insert_lgtm_image             = new InsertLGTMImage
   hide_merge_notes              = new HideMergeNotes
   prevent_disucuss_body_to_hide = new PreventDiscussBodyToHide
   close_side_bar                = new CloseSideBar
-  insert_lgtm_image             = new InsertLGTMImage
 
 
 $ ->
