@@ -6,7 +6,7 @@ GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.3
 
 # ダウンロードリンク
 
-[ダウンロードリンク](https://docs.google.com/a/moneyforward.co.jp/uc?id=0B0YQdAnlBcR8bzZzUm9tRnNWTVU&export=download)
+[ダウンロードリンク](https://github.com/nyangry/gitlab-helper/raw/master/gitlab-helper.crx)
 
 # 何が変わるの?
 
