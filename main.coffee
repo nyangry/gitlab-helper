@@ -271,6 +271,25 @@ class CloseSideBar
     $navSidebar.find('li a>span').hide()
     $('.page-with-sidebar').css 'padding-left', 52
 
+# add MR created by own button
+class LinkToOwnMRButton
+  constructor: ->
+    @bindEvents()
+
+  bindEvents: ->
+    $link_to_mr = $('.shortcuts-merge_requests').parent().clone()
+
+    return if $link_to_mr.length == 0
+
+    $link_to_mr.find('a').attr
+      href: $link_to_mr.find('a').attr('href').replace(/assignee/g, 'author')
+
+    $link_to_mr.find('i').replaceWith(
+      $('.profile-pic').find('img').clone().css('width', 12)
+    )
+
+    $('.nav-sidebar').append($link_to_mr)
+
 
 activateExtension = ->
   command_enter_to_post         = new CommandPlusEnterToPost
@@ -280,6 +299,7 @@ activateExtension = ->
   hide_merge_notes              = new HideMergeNotes
   prevent_disucuss_body_to_hide = new PreventDiscussBodyToHide
   close_side_bar                = new CloseSideBar
+  link_to_own_mr_button         = new LinkToOwnMRButton
 
 
 $ ->
