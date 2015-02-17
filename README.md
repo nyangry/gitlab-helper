@@ -2,7 +2,7 @@ gitlab-helper
 =============
 
 
-GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.3.3
+GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.3.4
 
 # ダウンロードリンク
 
@@ -63,6 +63,11 @@ GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.3
 			- [[PR] Add the button that shows MRs created by own](https://github.com/nyangry/gitlab-helper/pull/3)
 			- @syguer :+1:
 
+- 2/17
+	- ver 0.3.4
+		- いいねボタンでMRに対して +1 できるように
+
+
 # 機能詳細
 
 ## コメント欄で入力中 cmd + Enter で送信ボタンを押せる
@@ -71,7 +76,10 @@ GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.3
 ## ワンクリックで +1 できる
 ![Alt text](https://monosnap.com/file/EsIGBeHoFVbFBwKpmcW3p6PmhBCnjZ.png)
 
+MRに対して `+1` されます！
+
 クリックすると、即送信されます！ :+1:
+
 
 ## 絵文字パレットの追加
 ![Alt text](https://monosnap.com/file/mfcNZi2TRZsMJ5FFTAhFBoo4LoIzec.png)
@@ -110,4 +118,3 @@ GitLabのページは一度リロードしてね :v:
 
 # Contribution
 [https://github.com/nyangry/gitlab-helper](https://github.com/nyangry/gitlab-helper)
-
