@@ -42,7 +42,7 @@ class InsertPlusOne
     $('body').on 'click', '.js-insert-plus-one', (e) ->
       $current_form = $(@).parents('form')
 
-      $current_form.find('.js-note-text').val ' :+1:'
+      $current_form.find('.js-note-text').val '+1 :+1:'
 
       # コメント追加ボタン
       $submit_button = $current_form.find('.js-comment-button')
