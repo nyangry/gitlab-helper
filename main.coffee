@@ -10,16 +10,15 @@ class CommandPlusEnterToPost
     @bindEvents()
 
   bindEvents: ->
-
     key.filter = (event) ->
       tagName = (event.target || event.srcElement).tagName
-      return !(tagName == 'INPUT' || tagName == 'SELECT')
+      return !(tagName is 'INPUT' || tagName is 'SELECT')
 
     key '⌘+enter', (e) ->
       $target = $(event.target || event.srcElement)
       tagName = $target[0].tagName
 
-      return unless tagName == 'TEXTAREA'
+      return unless tagName is 'TEXTAREA'
       
       return unless $target.is(':focus')
 
@@ -232,9 +231,9 @@ class InsertLGTMImage
 # hide merge note in notes list
 class HideMergeNotes
   constructor: ->
-    @bindEvents()
+    @on()
 
-  bindEvents: ->
+  on: ->
     $('#notes-list').find('.note').filter('li').each ->
       $auto_added_commit_message = $(@).find('.note-text').children('p')
       return true if $auto_added_commit_message.length isnt 1
@@ -246,18 +245,18 @@ class HideMergeNotes
 # prevent discuss-body to hide
 class PreventDiscussBodyToHide
   constructor: ->
-    @bindEvents()
+    @on()
 
-  bindEvents: ->
+  on: ->
     $('.discussion-body').removeClass 'hide'
 
 
 # close side bar
 class CloseSideBar
   constructor: ->
-    @bindEvents()
+    @on()
 
-  bindEvents: ->
+  on: ->
     $('.sidebar-wrapper').css(
       width: 52,
       position: 'absolute',
@@ -274,12 +273,12 @@ class CloseSideBar
 # add MR created by own button
 class LinkToOwnMRButton
   constructor: ->
-    @bindEvents()
+    @on()
 
-  bindEvents: ->
+  on: ->
     $link_to_mr = $('.shortcuts-merge_requests').parent().clone()
 
-    return if $link_to_mr.length == 0
+    return if $link_to_mr.length is 0
 
     $link_to_mr.find('a').attr
       href: $link_to_mr.find('a').attr('href').replace(/assignee/g, 'author')
