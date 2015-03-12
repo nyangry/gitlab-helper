@@ -290,6 +290,25 @@ class LinkToOwnMRButton
 
     $('.nav-sidebar').append($link_to_mr)
 
+# always open diff stas
+class AlwaysOpenDiffStats
+  selectors:
+    component: '.diffs'
+    stats_content: '.js-toggle-content'
+
+  constructor: ->
+    @on()
+
+  on: ->
+    $component = $('body').find(@selectors['component'])
+
+    return if $component.length is 0
+
+    $stats_content = $component.find(@selectors['stats_content'])
+
+    $stats_content.removeClass('hide')
+
+
 
 activateExtension = ->
   command_enter_to_post         = new CommandPlusEnterToPost
@@ -300,6 +319,7 @@ activateExtension = ->
   prevent_disucuss_body_to_hide = new PreventDiscussBodyToHide
   close_side_bar                = new CloseSideBar
   link_to_own_mr_button         = new LinkToOwnMRButton
+  always_open_diff_stats        = new AlwaysOpenDiffStats
 
 
 $ ->
