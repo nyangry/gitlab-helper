@@ -310,15 +310,15 @@ class AlwaysOpenDiffStats
 
 
 activateExtension = ->
-  command_enter_to_post         = new CommandPlusEnterToPost
-  insert_plus_one               = new InsertPlusOne
-  emoji_pallet                  = new EmojiPallet
-  insert_lgtm_image             = new InsertLGTMImage
-  hide_merge_notes              = new HideMergeNotes
-  prevent_disucuss_body_to_hide = new PreventDiscussBodyToHide
-  close_side_bar                = new CloseSideBar
-  link_to_own_mr_button         = new LinkToOwnMRButton
-  always_open_diff_stats        = new AlwaysOpenDiffStats
+  new CommandPlusEnterToPost
+  new InsertPlusOne
+  new EmojiPallet
+  new InsertLGTMImage
+  new HideMergeNotes
+  new PreventDiscussBodyToHide
+  new CloseSideBar
+  new LinkToOwnMRButton
+  new AlwaysOpenDiffStats
 
 
 $ ->
