@@ -34,6 +34,9 @@ class CommandPlusEnterToPost
 # insert plus one
 class InsertPlusOne
   constructor: ->
+    @init()
+
+  init: ->
     @insertButton()
     @bindEvents()
 
@@ -66,6 +69,9 @@ class InsertPlusOne
 # add emoji pallet
 class EmojiPallet
   constructor: ->
+    @init()
+
+  init: ->
     return unless location.pathname.split('/').length >= 5
     @insertSmileIcon()
     @loadEmojiSource()
@@ -176,6 +182,9 @@ class EmojiPallet
 # insert lgtm image
 class InsertLGTMImage
   constructor: ->
+    @init()
+
+  init: ->
     @insertButton()
     @insertSpinnerImage()
     @bindEvents()
@@ -231,6 +240,9 @@ class InsertLGTMImage
 # hide merge note in notes list
 class HideMergeNotes
   constructor: ->
+    @init()
+
+  init: ->
     @on()
 
   on: ->
@@ -245,6 +257,9 @@ class HideMergeNotes
 # prevent discuss-body to hide
 class PreventDiscussBodyToHide
   constructor: ->
+    @init()
+
+  init: ->
     @on()
 
   on: ->
@@ -254,6 +269,9 @@ class PreventDiscussBodyToHide
 # close side bar
 class CloseSideBar
   constructor: ->
+    @init()
+
+  init: ->
     @on()
 
   on: ->
@@ -273,6 +291,9 @@ class CloseSideBar
 # add MR created by own button
 class LinkToOwnMRButton
   constructor: ->
+    @init()
+
+  init: ->
     @on()
 
   on: ->
@@ -296,6 +317,9 @@ class AlwaysOpenDiffStats
     stats_content: '.js-toggle-content'
 
   constructor: ->
+    @init()
+
+  init: ->
     @on()
 
   on: ->
@@ -308,7 +332,6 @@ class AlwaysOpenDiffStats
     $stats_content.removeClass('hide')
 
 
-
 activateExtension = ->
   new CommandPlusEnterToPost
   new InsertPlusOne
@@ -318,7 +341,6 @@ activateExtension = ->
   new PreventDiscussBodyToHide
   new CloseSideBar
   new LinkToOwnMRButton
-  new AlwaysOpenDiffStats
 
 
 $ ->
