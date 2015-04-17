@@ -10,8 +10,6 @@ GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.3
 
 # 何が変わるの?
 
-基本的にコメントを使いやすくする拡張機能です！
-
 - コメント欄で入力中 cmd + Enter で送信ボタンを押せる
 - ワンクリックで +1 できる
 - 絵文字パレットの追加
@@ -19,6 +17,7 @@ GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.3
 - デフォルトでoutdentされたコメントが開きっぱになるように
 - 自動投稿される追加コミットログをコメント一覧から隠す
 - GitLabのサイドメニューが大きすぎるのでサイズを縮小する
+- その他細かい挙動の調整
 
 
 # 更新履歴
@@ -68,8 +67,13 @@ GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.3
 		- いいねボタンでMRに対して +1 できるように
 
 - 3/12
-	- ver 0.3.5
-    - diff stas がデフォルトで開いたままになるように
+	 - ver 0.3.5
+      - diff stas がデフォルトで開いたままになるように
+
+- 4/17
+  - ver 0.3.7
+      - タイムライン等で表示される時間表記を詳細な日時表記へ変更する
+      - マイルストーンがMR画面でわかりづらい位置に表示されている問題を改善
 
 
 # 機能詳細
@@ -110,6 +114,27 @@ MRに対して `+1` されます！
 ## GitLabのサイドメニューが大きすぎるのでサイズを縮小する
 [PR 参照](https://github.com/nyangry/gitlab-helper/pull/1)
 
+
+## タイムライン等で表示される時間表記を詳細な時間表記へ変更する
+- before
+![Alt text](https://monosnap.com/file/OX6WtWWlUuR5TCMLjmLLeNJFpqGMmO.png)
+
+- after
+![Alt text](https://monosnap.com/file/PplLv6w0AaLupHpYlGKP2ZZ0HGjIhA.png)
+
+GitLab側のスクリプトで60秒毎に更新される、スクロールによるローディング等で再度リセットされる
+といった挙動があるので、一瞬元々の表示に戻りますが、10秒おきに詳細な時間表記へ変更するようにしています。
+（GitLab側のイベントをフックできないので仕方なく）
+
+
+## マイルストーンがMR画面でわかりづらい位置に表示されている問題を改善
+- before
+![Alt text](https://monosnap.com/file/bh1jzoNOzAMpey9J5dwLtNQJ5SLacZ.png)
+
+- after
+![Alt text](https://monosnap.com/file/NE4rpEAmjF101kcoliegH5BfpzX13D.png)
+
+ここからマイルストーンの変更もできます。
 
 
 # インストール方法
