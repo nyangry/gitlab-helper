@@ -12,6 +12,7 @@
                 "bower_components/jquery/dist/jquery.min.js",
                 "bower_components/keymaster/keymaster.js",
                 "bower_components/moment/moment.js",
+                "bower_components/select2/select2.min.js",
                 "main.js"
             ]
         }
