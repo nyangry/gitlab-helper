@@ -352,7 +352,7 @@ class ShowDatetime
   formatText: ($time) ->
     original_datetime = $time.attr 'datetime'
 
-    formatted_datetime = moment(original_datetime).format('YYYY/MM/DD h:mm:ss')
+    formatted_datetime = moment(original_datetime).format('YYYY/MM/DD H:mm:ss')
     
     formatted_text = formatted_datetime
     formatted_text += ' ( ' + moment(original_datetime).fromNow() + ' )'
