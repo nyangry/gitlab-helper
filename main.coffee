@@ -371,6 +371,44 @@ class ShowDatetime
     $time.text formatted_text
 
 
+class AddMileStoneSelectionToEasilyVisiblePlaceOnMR
+  selectors:
+    form: '.edit-merge_request'
+    milestone: 'select[name="merge_request[milestone_id]"]'
+    slead: '.slead'
+
+  constructor: ->
+    @init()
+
+  init: ->
+    @$form      = $(@selectors['form'])
+    @$milestone = $(@selectors['milestone'])
+    @$slead     = $(@selectors['slead']).first()
+
+    @on()
+
+  on: ->
+    return if @$form.length is 0
+
+    $cloned_form = @$form.clone()
+    $cloned_form.find('.prepend-top-20').remove()
+    $cloned_form.css 'display', 'inline-block'
+
+    @$slead.append $cloned_form
+
+    $cloned_milestone = @$milestone.clone().removeAttr('class style')
+    $cloned_form.append $cloned_milestone
+    $cloned_milestone.select2()
+
+    $cloned_form.append $('<input>').attr(
+      name: csrf_methods.csrfParam
+      type: 'hidden'
+    ).val csrf_methods.csrfToken
+
+    $cloned_form.on 'change', ->
+      $(@).submit()
+
+
 activateExtensions = ->
   new CommandPlusEnterToPost
   new InsertPlusOne
@@ -382,6 +420,7 @@ activateExtensions = ->
   new LinkToOwnMRButton
   new AlwaysOpenDiffStats
   new ShowDatetime
+  new AddMileStoneSelectionToEasilyVisiblePlaceOnMR
 
 
 $ ->
