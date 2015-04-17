@@ -1,5 +1,5 @@
 {
-    "version": "0.3.5",
+    "version": "0.3.7",
     "manifest_version": 2,
 
     "name": "GitLab Helper",
@@ -11,6 +11,7 @@
             "js": [
                 "bower_components/jquery/dist/jquery.min.js",
                 "bower_components/keymaster/keymaster.js",
+                "bower_components/moment/moment.js",
                 "main.js"
             ]
         }
