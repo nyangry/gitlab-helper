@@ -6,6 +6,9 @@
   ],
   "license": "MIT",
   "homepage": "nyangryy.hatenablog.com",
+  "install": {
+    "path": "libs"
+  },
   "ignore": [
     "**/.*",
     "node_modules",
