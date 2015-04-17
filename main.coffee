@@ -360,7 +360,7 @@ class ShowDatetime
     $time.text formatted_text
 
 
-activateExtension = ->
+activateExtensions = ->
   new CommandPlusEnterToPost
   new InsertPlusOne
   new EmojiPallet
@@ -374,9 +374,9 @@ activateExtension = ->
 
 
 $ ->
-  activateExtension()
+  activateExtensions()
 
 
 # bind for TurboLinks
 $(document).on 'page:load', ->
-  activateExtension()
+  activateExtensions()
