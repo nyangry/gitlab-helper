@@ -4,9 +4,9 @@ gitlab-helper
 
 GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.3.7
 
-# ダウンロードリンク
+# Chrome ウェブストア
 
-[ダウンロードリンク](https://github.com/nyangry/gitlab-helper/raw/master/gitlab-helper.crx)
+[Chrome ウェブストア](https://chrome.google.com/webstore/detail/gitlab-helper/llipkopkbbinmcoaecgnboheihnbpdkn)
 
 # 何が変わるの?
 
@@ -75,6 +75,8 @@ GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.3
       - タイムライン等で表示される時間表記を詳細な日時表記へ変更する
       - マイルストーンがMR画面でわかりづらい位置に表示されている問題を改善
 
+- 4/27
+  - [Chrome ウェブストア](https://chrome.google.com/webstore/detail/gitlab-helper/llipkopkbbinmcoaecgnboheihnbpdkn)での配布を開始しました。 
 
 # 機能詳細
 
