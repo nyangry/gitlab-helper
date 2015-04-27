@@ -4,9 +4,8 @@ gitlab-helper
 
 GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.3.7
 
-# Chrome ウェブストア
-
 [Chrome ウェブストア](https://chrome.google.com/webstore/detail/gitlab-helper/llipkopkbbinmcoaecgnboheihnbpdkn)
+
 
 # 何が変わるの?
 
@@ -137,14 +136,6 @@ GitLab側のスクリプトで60秒毎に更新される、スクロールによ
 ![Alt text](https://monosnap.com/file/NE4rpEAmjF101kcoliegH5BfpzX13D.png)
 
 ここからマイルストーンの変更もできます。
-
-
-# インストール方法
-
-Chrome Extension管理画面( chrome://extensions/　)
-を開いて、ダウンロードしたファイルをドラッグ・アンド・ドロップ
-
-GitLabのページは一度リロードしてね :v:
 
 
 # Contribution
