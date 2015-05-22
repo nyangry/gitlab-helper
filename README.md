@@ -2,7 +2,7 @@ gitlab-helper
 =============
 
 
-GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.3.7
+GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.3.8
 
 [Chrome ウェブストア](https://chrome.google.com/webstore/detail/gitlab-helper/llipkopkbbinmcoaecgnboheihnbpdkn)
 
