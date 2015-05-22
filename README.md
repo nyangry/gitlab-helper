@@ -77,6 +77,10 @@ GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.3
 - 4/27
   - [Chrome ウェブストア](https://chrome.google.com/webstore/detail/gitlab-helper/llipkopkbbinmcoaecgnboheihnbpdkn)での配布を開始しました。 
 
+- 5/22
+  - ver 0.3.8
+      - [廃止] タイムライン等で表示される時間表記を詳細な日時表記へ変更する
+
 # 機能詳細
 
 ## コメント欄で入力中 cmd + Enter で送信ボタンを押せる
@@ -114,18 +118,6 @@ MRに対して `+1` されます！
 
 ## GitLabのサイドメニューが大きすぎるのでサイズを縮小する
 [PR 参照](https://github.com/nyangry/gitlab-helper/pull/1)
-
-
-## タイムライン等で表示される時間表記を詳細な時間表記へ変更する
-- before
-![Alt text](https://monosnap.com/file/OX6WtWWlUuR5TCMLjmLLeNJFpqGMmO.png)
-
-- after
-![Alt text](https://monosnap.com/file/PplLv6w0AaLupHpYlGKP2ZZ0HGjIhA.png)
-
-GitLab側のスクリプトで60秒毎に更新される、スクロールによるローディング等で再度リセットされる
-といった挙動があるので、一瞬元々の表示に戻りますが、10秒おきに詳細な時間表記へ変更するようにしています。
-（GitLab側のイベントをフックできないので仕方なく）
 
 
 ## マイルストーンがMR画面でわかりづらい位置に表示されている問題を改善
