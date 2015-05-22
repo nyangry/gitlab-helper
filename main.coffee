@@ -343,34 +343,6 @@ class AlwaysOpenDiffStats
     $stats_content.removeClass('hide')
 
 
-# show datetime
-# see https://github.com/gitlabhq/gitlabhq/blob/master/app/assets/javascripts/lib/jquery.timeago.js
-class ShowDatetime
-  constructor: ->
-    @init()
-
-  init: ->
-    @on()
-
-    setInterval @on, 10000
-
-  on: =>
-    $times = $('time')
-
-    $times.each (_i, element) =>
-      @formatText $(element)
-
-  formatText: ($time) ->
-    original_datetime = $time.attr 'datetime'
-
-    formatted_datetime = moment(original_datetime).format('YYYY/MM/DD H:mm:ss')
-    
-    formatted_text = formatted_datetime
-    formatted_text += ' ( ' + moment(original_datetime).fromNow() + ' )'
-
-    $time.text formatted_text
-
-
 class AddMileStoneSelectionToEasilyVisiblePlaceOnMR
   selectors:
     form: '.edit-merge_request'
@@ -419,7 +391,6 @@ activateExtensions = ->
   new CloseSideBar
   new LinkToOwnMRButton
   new AlwaysOpenDiffStats
-  new ShowDatetime
   new AddMileStoneSelectionToEasilyVisiblePlaceOnMR
 
 
