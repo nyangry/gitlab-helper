@@ -188,64 +188,69 @@ spinner_image = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb
 #
 #     $pallet_backdrop_node.appendTo 'body'
 #     $pallet_node.appendTo 'body'
-#
-#
-# # insert lgtm image
-# class InsertLGTMImage
-#   constructor: ->
-#     @init()
-#
-#   init: ->
-#     @insertButton()
-#     @insertSpinnerImage()
-#     @bindEvents()
-#
-#   bindEvents: ->
-#     loading = false
-#     $('body').on 'click', '.js-insert-lgtm-image', (e) ->
-#       return if loading
-#
-#       loading = true
-#       $('.js-lgtm-spinner-image').show()
-#
-#       $current_form = $(@).parents('form')
-#       $text_area    = $current_form.find('.js-note-text')
-#
-#       $.getJSON 'http://www.lgtm.in/g', (data) ->
-#         # LGTM画像を挿入する
-#         lgtm_image = data.markdown.split('\n\n')[0]
-#         $text_area.val $text_area.val() + ' ' + lgtm_image
-#
-#         # コメント追加ボタンのdisabledを解除する
-#         $current_form.find('.js-comment-button').removeClass('disabled').removeAttr('disabled')
-#
-#         # テキストエリアにフォーカスする
-#         $text_area.focus()
-#
-#         loading = false
-#         $('.js-lgtm-spinner-image').hide()
-#
-#   insertButton: ->
-#     $icon_node = $('<li/>').append $('<i/>').attr
-#       class: 'fa fa-github-alt'
-#       style: 'font-size: 28px; line-height: 28px; padding: 6px; display: block; cursor: pointer;'
-#     $icon_node.addClass 'js-insert-lgtm-image'
-#
-#     $('.js-main-target-form').find('.nav-tabs').append $icon_node.clone()
-#     $('.js-new-note-form').find('.nav-tabs').append $icon_node.clone()
-#     $('.edit_note').find('.nav-tabs').append $icon_node.clone()
-#
-#   insertSpinnerImage: ->
-#     $icon_node = $('<li/>').css
-#       display: 'none'
-#     $icon_node.addClass 'js-lgtm-spinner-image'
-#
-#     $icon_node.append $('<img/>').attr
-#       style: 'width: 34px; padding: 6px;'
-#       src: spinner_image
-#
-#     $('.js-main-target-form').find('.nav-tabs').append $icon_node.clone()
-#     $('.js-new-note-form').find('.nav-tabs').append $icon_node.clone()
+
+
+# insert lgtm image
+class InsertLGTMImage
+  selectors:
+    new_note_form_md_header_ul: '.js-new-note-form .md-header ul'
+    main_target_form_md_header_ul: '.js-main-target-form .md-header ul'
+    note_text: '.js-note-text'
+
+  constructor: ->
+    @init()
+
+  init: ->
+    @insertButton()
+    @insertSpinnerImage()
+    @bindEvents()
+
+  bindEvents: ->
+    loading = false
+
+    $('body').on 'click', '.js-insert-lgtm-image', (e) =>
+      return if loading
+
+      loading = true
+      $('.js-lgtm-spinner-image').show()
+
+      $current_form = $(e.target).parents('form')
+      $text_area    = $current_form.find(@selectors['note_text'])
+
+      $.getJSON 'http://www.lgtm.in/g', (data) ->
+        # LGTM画像を挿入する
+        lgtm_image = data.markdown.split('\n\n')[0]
+        $text_area.val $text_area.val() + ' ' + lgtm_image
+
+        # コメント追加ボタンのdisabledを解除する
+        $current_form.find('.js-comment-button').removeClass('disabled').removeAttr('disabled')
+
+        # テキストエリアにフォーカスする
+        $text_area.focus()
+
+        loading = false
+        $('.js-lgtm-spinner-image').hide()
+
+  insertButton: ->
+    $icon_node = $('<li/>').append $('<i/>').attr
+      class: 'fa fa-github-alt'
+      style: 'font-size: 28px; line-height: 28px; padding: 6px; display: block; cursor: pointer; color: #2faa60;'
+    $icon_node.addClass 'js-insert-lgtm-image'
+
+    $(@selectors['main_target_form_md_header_ul']).append $icon_node.clone()
+    $(@selectors['new_note_form_md_header_ul']).append $icon_node.clone()
+
+  insertSpinnerImage: ->
+    $icon_node = $('<li/>').css
+      display: 'none'
+    $icon_node.addClass 'js-lgtm-spinner-image'
+
+    $icon_node.append $('<img/>').attr
+      style: 'width: 34px; padding: 6px;'
+      src: spinner_image
+
+    $(@selectors['main_target_form_md_header_ul']).append $icon_node.clone()
+    $(@selectors['new_note_form_md_header_ul']).append $icon_node.clone()
 #
 #
 # # hide merge note in notes list
@@ -382,6 +387,7 @@ spinner_image = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb
 
 
 activateExtensions = ->
+  new InsertLGTMImage
 
 
 $ ->
