@@ -13,33 +13,6 @@ spinner_image = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb
 #   csrfParam: ->
 #     $("meta[name=csrf-param]").attr "content"
 # }
-#
-#
-# # cmd + Enter to Post
-# class CommandPlusEnterToPost
-#   constructor: ->
-#     @bindEvents()
-#
-#   bindEvents: ->
-#     key.filter = (event) ->
-#       tagName = (event.target || event.srcElement).tagName
-#       return !(tagName is 'INPUT' || tagName is 'SELECT')
-#
-#     key '⌘+enter', (e) ->
-#       $target = $(event.target || event.srcElement)
-#       tagName = $target[0].tagName
-#
-#       return unless tagName is 'TEXTAREA'
-#
-#       return unless $target.is(':focus')
-#
-#       $note_form = $target.parents('form')
-#
-#       $submit_button = $note_form.find('.js-comment-button')
-#
-#       return if $submit_button.hasClass('disabled')
-#
-#       $submit_button.click()
 
 
 # insert plus one
