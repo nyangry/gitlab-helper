@@ -40,41 +40,45 @@ spinner_image = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb
 #       return if $submit_button.hasClass('disabled')
 #
 #       $submit_button.click()
-#
-#
-# # insert plus one
-# class InsertPlusOne
-#   constructor: ->
-#     @init()
-#
-#   init: ->
-#     @insertButton()
-#     @bindEvents()
-#
-#   bindEvents: ->
-#     $('body').on 'click', '.js-insert-plus-one', (e) ->
-#       $current_form = $(@).parents('form')
-#
-#       $current_form.find('.js-note-text').val '+1 :+1:'
-#
-#       # コメント追加ボタン
-#       $submit_button = $current_form.find('.js-comment-button')
-#
-#       # コメント追加ボタンのdisabledを解除する
-#       $submit_button.removeClass('disabled').removeAttr('disabled')
-#
-#       # コメント送信
-#       $submit_button.click()
-#
-#   insertButton: ->
-#     $icon_node = $('<li/>').append $('<i/>').attr
-#       class: 'fa fa-thumbs-o-up'
-#       style: 'font-size: 28px; line-height: 28px; padding: 6px; display: block; cursor: pointer;'
-#     $icon_node.addClass 'js-insert-plus-one'
-#
-#     $('.js-main-target-form').find('.nav-tabs').append $icon_node.clone()
-#     $('.js-new-note-form').find('.nav-tabs').append $icon_node.clone()
-#     $('.edit_note').find('.nav-tabs').append $icon_node.clone()
+
+
+# insert plus one
+class InsertPlusOne
+  selectors:
+    new_note_form_md_header_ul: '.js-new-note-form .md-header ul'
+    main_target_form_md_header_ul: '.js-main-target-form .md-header ul'
+    note_text: '.js-note-text'
+
+  constructor: ->
+    @init()
+
+  init: ->
+    @insertButton()
+    @bindEvents()
+
+  bindEvents: ->
+    $('body').on 'click', '.js-insert-plus-one', (e) =>
+      $current_form = $(e.target).parents('form')
+
+      $current_form.find(@selectors['note_text']).val ':+1:'
+
+      # コメント追加ボタン
+      $submit_button = $current_form.find('.js-comment-button')
+
+      # コメント追加ボタンのdisabledを解除する
+      $submit_button.removeClass('disabled').removeAttr('disabled')
+
+      # コメント送信
+      $submit_button.click()
+
+  insertButton: ->
+    $icon_node = $('<li/>').append $('<i/>').attr
+      class: 'fa fa-thumbs-o-up'
+      style: 'font-size: 28px; line-height: 28px; padding: 6px; display: block; cursor: pointer; color: #268BD2;'
+    $icon_node.addClass 'js-insert-plus-one'
+
+    $(@selectors['main_target_form_md_header_ul']).append $icon_node.clone()
+    $(@selectors['new_note_form_md_header_ul']).append $icon_node.clone()
 #
 #
 # # add emoji pallet
@@ -387,6 +391,7 @@ class InsertLGTMImage
 
 
 activateExtensions = ->
+  new InsertPlusOne
   new InsertLGTMImage
 
 
