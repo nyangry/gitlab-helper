@@ -1,7 +1,7 @@
 {
   "name": "gitlab-helper",
   "version": "0.5.0",
-  "description": "gitlab-helper =============",
+  "description": "gitlab-helper",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,10 +19,16 @@
     "url": "https://github.com/nyangry/gitlab-helper/issues"
   },
   "homepage": "https://github.com/nyangry/gitlab-helper",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "lodash.throttle": "^3.0.4"
+  },
   "devDependencies": {
-    "coffee-script": "^1.9.0",
-    "gulp": "^3.8.10",
+    "gulp": "^3.9.0",
     "gulp-coffee": "^2.3.1",
-    "gulp-uglify": "^1.1.0"
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^1.4.2",
+    "gulp-util": "^3.0.7",
+    "jquery": "^2.1.4"
   }
 }
