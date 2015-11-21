@@ -235,23 +235,20 @@ $ ->
 
       $elements['main_target_form_md_header_ul'].append $icon_node.clone()
       $elements['new_note_form_md_header_ul'].append $icon_node.clone()
-  #
-  #
-  # # hide merge note in notes list
-  # class HideMergeNotes
-  #   constructor: ->
-  #     @init()
-  #
-  #   init: ->
-  #     @on()
-  #
-  #   on: ->
-  #     $('#notes-list').find('.note').filter('li').each ->
-  #       $auto_added_commit_message = $(@).find('.note-text').children('p')
-  #       return true if $auto_added_commit_message.length isnt 1
-  #       return true unless $auto_added_commit_message.is(':contains(new commit)')
-  #       $(@).css
-  #         display: 'none'
+
+
+  # hide merge note in notes list
+  class HideMergeNotes
+    constructor: ->
+      @init()
+
+    init: ->
+      @on()
+
+    on: ->
+      $('#notes-list > li.timeline-entry.note').each ->
+        $(@).css
+          display: 'none'
   #
   #
   # # prevent discuss-body to hide
@@ -374,6 +371,7 @@ $ ->
     new InsertPlusOne
     new EmojiPallet
     new InsertLGTMImage
+    new HideMergeNotes
 
 
   $ ->
