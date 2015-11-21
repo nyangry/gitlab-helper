@@ -1,7 +1,7 @@
 var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 $(function() {
-  var $elements, EmojiPallet, EmphasizeOutdatedDiff, HideMergeNotes, InsertLGTMImage, InsertPlusOne, activateExtensions, common_selectors, spinner_image;
+  var $elements, EmojiPallet, EmphasizeOutdatedDiff, HideMergeNotes, InsertLGTMImage, InsertPlusOne, ScrollToCorrectPostionOfAnchor, activateExtensions, common_selectors, spinner_image;
   if ($('meta[name="description"]').attr('content') !== 'GitLab Community Edition') {
     return;
   }
@@ -241,6 +241,9 @@ $(function() {
 
     HideMergeNotes.prototype.on = function() {
       return $('#notes-list > li.timeline-entry.note').each(function() {
+        if (!/Added \d+ commit[s]?/.test($(this).text())) {
+          return true;
+        }
         return $(this).css({
           display: 'none'
         });
@@ -276,12 +279,35 @@ $(function() {
     return EmphasizeOutdatedDiff;
 
   })();
+  ScrollToCorrectPostionOfAnchor = (function() {
+    function ScrollToCorrectPostionOfAnchor() {
+      this.init();
+    }
+
+    ScrollToCorrectPostionOfAnchor.prototype.init = function() {
+      if (location.hash === '') {
+        return;
+      }
+      return this.on();
+    };
+
+    ScrollToCorrectPostionOfAnchor.prototype.on = function() {
+      var $anchor_element, current_top_position;
+      $anchor_element = $(location.hash);
+      current_top_position = $anchor_element.offset().top - $anchor_element.height() - 30;
+      return $(document).scrollTop(current_top_position);
+    };
+
+    return ScrollToCorrectPostionOfAnchor;
+
+  })();
   activateExtensions = function() {
     new InsertPlusOne;
     new EmojiPallet;
     new InsertLGTMImage;
     new HideMergeNotes;
-    return new EmphasizeOutdatedDiff;
+    new EmphasizeOutdatedDiff;
+    return new ScrollToCorrectPostionOfAnchor;
   };
   $(function() {
     return activateExtensions();

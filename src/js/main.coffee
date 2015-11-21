@@ -247,6 +247,8 @@ $ ->
 
     on: ->
       $('#notes-list > li.timeline-entry.note').each ->
+        return true unless /Added \d+ commit[s]?/.test $(@).text()
+
         $(@).css
           display: 'none'
 
@@ -269,6 +271,24 @@ $ ->
 
         $block.css
           backgroundColor: 'rgba(170, 170, 170, 0.5)'
+
+
+  class ScrollToCorrectPostionOfAnchor
+    constructor: ->
+      @init()
+
+    init: ->
+      # アンカーなしなら何もしない
+      return if location.hash is ''
+
+      @on()
+
+    on: ->
+      $anchor_element = $(location.hash)
+
+      current_top_position = $anchor_element.offset().top - $anchor_element.height() - 30
+
+      $(document).scrollTop current_top_position
   #
   #
   # # prevent discuss-body to hide
@@ -393,6 +413,7 @@ $ ->
     new InsertLGTMImage
     new HideMergeNotes
     new EmphasizeOutdatedDiff
+    new ScrollToCorrectPostionOfAnchor
 
 
   $ ->
