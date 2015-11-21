@@ -140,9 +140,7 @@ $ ->
     successLoadEmojis: (data, status, xhr) =>
       emojis = data.emojis
 
-      console.log emojis.length
       emojis = emojis.filter (emoji) -> !/(1F1|1F56|1F55)/.test emoji.path
-      console.log emojis.length
 
       # emojis.sort (a, b) ->
       #   return 1 if a.name > b.name
@@ -158,7 +156,7 @@ $ ->
 
       $pallet_node = $('<div/>').attr
         class: 'js-pallet'
-        style: 'z-index: 200; display: none; position: absolute; width: 70%; background: #efefef; padding: 5px; border: 1px solid #ddd;'
+        style: 'z-index: 200; display: none; position: absolute; width: 50%; background: #efefef; padding: 5px; border: 1px solid #ddd;'
 
       $.each emojis, ->
         $icon_node = $('<span/>').attr
