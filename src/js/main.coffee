@@ -249,6 +249,26 @@ $ ->
       $('#notes-list > li.timeline-entry.note').each ->
         $(@).css
           display: 'none'
+
+
+  class EmphasizeOutdatedDiff
+    constructor: ->
+      @init()
+
+    init: ->
+      @on()
+
+    on: ->
+      $('#notes-list > div.timeline-entry').find('.discussion-header:contains(outdated diff)').each ->
+        $strong_text = $(@).find('strong')
+
+        $strong_text.css
+          color: '#c7254e'
+
+        $block = $(@).parents('.timeline-entry')
+
+        $block.css
+          backgroundColor: 'rgba(170, 170, 170, 0.5)'
   #
   #
   # # prevent discuss-body to hide
@@ -372,6 +392,7 @@ $ ->
     new EmojiPallet
     new InsertLGTMImage
     new HideMergeNotes
+    new EmphasizeOutdatedDiff
 
 
   $ ->
