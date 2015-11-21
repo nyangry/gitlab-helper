@@ -1,7 +1,7 @@
 var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 $(function() {
-  var $elements, EmojiPallet, HideMergeNotes, InsertLGTMImage, InsertPlusOne, activateExtensions, common_selectors, spinner_image;
+  var $elements, EmojiPallet, EmphasizeOutdatedDiff, HideMergeNotes, InsertLGTMImage, InsertPlusOne, activateExtensions, common_selectors, spinner_image;
   if ($('meta[name="description"]').attr('content') !== 'GitLab Community Edition') {
     return;
   }
@@ -250,11 +250,38 @@ $(function() {
     return HideMergeNotes;
 
   })();
+  EmphasizeOutdatedDiff = (function() {
+    function EmphasizeOutdatedDiff() {
+      this.init();
+    }
+
+    EmphasizeOutdatedDiff.prototype.init = function() {
+      return this.on();
+    };
+
+    EmphasizeOutdatedDiff.prototype.on = function() {
+      return $('#notes-list > div.timeline-entry').find('.discussion-header:contains(outdated diff)').each(function() {
+        var $block, $strong_text;
+        $strong_text = $(this).find('strong');
+        $strong_text.css({
+          color: '#c7254e'
+        });
+        $block = $(this).parents('.timeline-entry');
+        return $block.css({
+          backgroundColor: 'rgba(170, 170, 170, 0.5)'
+        });
+      });
+    };
+
+    return EmphasizeOutdatedDiff;
+
+  })();
   activateExtensions = function() {
     new InsertPlusOne;
     new EmojiPallet;
     new InsertLGTMImage;
-    return new HideMergeNotes;
+    new HideMergeNotes;
+    return new EmphasizeOutdatedDiff;
   };
   $(function() {
     return activateExtensions();
