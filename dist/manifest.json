@@ -3,7 +3,7 @@
     "manifest_version": 2,
 
     "name": "GitLab Helper",
-    "description": "Improve GitLab UX",
+    "description": "Improve GitLab UI",
 
     "content_scripts": [
         {
