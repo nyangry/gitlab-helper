@@ -2,7 +2,7 @@ gitlab-helper
 =============
 
 
-GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.5.5
+GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.5.6
 
 [Chrome ウェブストア](https://chrome.google.com/webstore/detail/gitlab-helper/llipkopkbbinmcoaecgnboheihnbpdkn)
 
@@ -15,6 +15,7 @@ GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.5
 - デフォルトでoutdentされたコメントブロックの強調表示
 - 自動投稿される追加コミットログをコメント一覧から隠す
 - アンカー付きリンクに遷移した際、正しい offset を再取得した上でアンカー箇所にスクロールするように
+- 自身が作成したMerge Requestの一覧へ遷移するためのリンクをサイドバーに追加
 
 ## GitLab ver 7.7 (currently not working)
 - デフォルトでoutdentされたコメントが開きっぱになるように
@@ -100,6 +101,10 @@ GitLabのイケてないところをちょっとよくするChrome拡張 ver 0.5
   - ver 0.5.5
     - [修正] 自動投稿される追加コミットログをコメント一覧から隠す
     - アンカー付きリンクに遷移した際、正しい offset を再取得した上でアンカー箇所にスクロールするように
+
+- 12/07
+  - ver 0.5.6
+    - 自身が作成したMerge Requestの一覧へ遷移するためのリンクをサイドバーに追加
 
 
 # 機能詳細

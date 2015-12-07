@@ -1,6 +1,6 @@
 {
   "name": "gitlab-helper",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "gitlab-helper",
   "main": "main.js",
   "scripts": {
