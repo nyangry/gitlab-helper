@@ -325,28 +325,35 @@ $ ->
   #     $navSidebar.find('li a>span').hide()
   #     $('.page-with-sidebar').css 'padding-left', 52
   #
-  # # add MR created by own button
-  # class LinkToOwnMRButton
-  #   constructor: ->
-  #     @init()
-  #
-  #   init: ->
-  #     @on()
-  #
-  #   on: ->
-  #     $link_to_mr = $('.shortcuts-merge_requests').parent().clone()
-  #
-  #     return if $link_to_mr.length is 0
-  #
-  #     $link_to_mr.find('a').attr
-  #       href: $link_to_mr.find('a').attr('href').replace(/assignee/g, 'author')
-  #
-  #     $link_to_mr.find('i').replaceWith(
-  #       $('.profile-pic').find('img').clone().css('width', 12)
-  #     )
-  #
-  #     $('.nav-sidebar').append($link_to_mr)
-  #
+
+  # add MR created by own button
+  class AddLinkToOwnMRButtonIntoSideMenu
+    constructor: ->
+      @init()
+
+    init: ->
+      @on()
+
+    on: ->
+      $link_to_own_mr = $('.shortcuts-merge_requests').parent().clone()
+
+      return if $link_to_own_mr.length is 0
+
+      $link_to_own_mr.find('a').attr
+        href: $link_to_own_mr.find('a').attr('href').replace(/assignee_id/g, 'author_id')
+
+      $link_to_own_mr.find('a > span').text('Own Merge Requests')
+
+      $link_to_own_mr.find('i').replaceWith(
+        $('.sidebar-wrapper').find('img.avatar').clone().css
+          float: 'none'
+          width: '16px'
+          height: '15px'
+          marginRight: '13px'
+      )
+
+      $('.shortcuts-merge_requests').parent().after($link_to_own_mr)
+
   # # always open diff stas
   # class AlwaysOpenDiffStats
   #   selectors:
@@ -414,6 +421,7 @@ $ ->
     new HideMergeNotes
     new EmphasizeOutdatedDiff
     new ScrollToCorrectPostionOfAnchor
+    new AddLinkToOwnMRButtonIntoSideMenu
 
 
   $ ->

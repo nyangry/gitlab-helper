@@ -1,7 +1,7 @@
 var bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
 $(function() {
-  var $elements, EmojiPallet, EmphasizeOutdatedDiff, HideMergeNotes, InsertLGTMImage, InsertPlusOne, ScrollToCorrectPostionOfAnchor, activateExtensions, common_selectors, spinner_image;
+  var $elements, AddLinkToOwnMRButtonIntoSideMenu, EmojiPallet, EmphasizeOutdatedDiff, HideMergeNotes, InsertLGTMImage, InsertPlusOne, ScrollToCorrectPostionOfAnchor, activateExtensions, common_selectors, spinner_image;
   if ($('meta[name="description"]').attr('content') !== 'GitLab Community Edition') {
     return;
   }
@@ -301,13 +301,45 @@ $(function() {
     return ScrollToCorrectPostionOfAnchor;
 
   })();
+  AddLinkToOwnMRButtonIntoSideMenu = (function() {
+    function AddLinkToOwnMRButtonIntoSideMenu() {
+      this.init();
+    }
+
+    AddLinkToOwnMRButtonIntoSideMenu.prototype.init = function() {
+      return this.on();
+    };
+
+    AddLinkToOwnMRButtonIntoSideMenu.prototype.on = function() {
+      var $link_to_own_mr;
+      $link_to_own_mr = $('.shortcuts-merge_requests').parent().clone();
+      if ($link_to_own_mr.length === 0) {
+        return;
+      }
+      $link_to_own_mr.find('a').attr({
+        href: $link_to_own_mr.find('a').attr('href').replace(/assignee_id/g, 'author_id')
+      });
+      $link_to_own_mr.find('a > span').text('Own Merge Requests');
+      $link_to_own_mr.find('i').replaceWith($('.sidebar-wrapper').find('img.avatar').clone().css({
+        float: 'none',
+        width: '16px',
+        height: '15px',
+        marginRight: '13px'
+      }));
+      return $('.shortcuts-merge_requests').parent().after($link_to_own_mr);
+    };
+
+    return AddLinkToOwnMRButtonIntoSideMenu;
+
+  })();
   activateExtensions = function() {
     new InsertPlusOne;
     new EmojiPallet;
     new InsertLGTMImage;
     new HideMergeNotes;
     new EmphasizeOutdatedDiff;
-    return new ScrollToCorrectPostionOfAnchor;
+    new ScrollToCorrectPostionOfAnchor;
+    return new AddLinkToOwnMRButtonIntoSideMenu;
   };
   $(function() {
     return activateExtensions();
